@@ -20,9 +20,9 @@ export class Question extends Entity<QuestionProps> {
 	) {
 		const question = new Question(
 			{
-        ...props,
-        createdAt: props.createdAt ?? new Date()
-      },
+				...props,
+				createdAt: props.createdAt ?? new Date(),
+			},
 			id,
 		);
 		return question;
