@@ -1,16 +1,21 @@
 {
-  "name": "ddd-no-nodejs",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "vitest run"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^2.1.8"
-  }
+	"name": "ddd-no-nodejs",
+	"version": "1.0.0",
+	"description": "",
+	"type": "module",
+	"main": "index.js",
+	"scripts": {
+		"test": "vitest run"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"dayjs": "^1.11.13"
+	},
+	"devDependencies": {
+		"@faker-js/faker": "^9.3.0",
+		"vite-tsconfig-paths": "^5.1.4",
+		"vitest": "^2.1.8"
+	}
 }
