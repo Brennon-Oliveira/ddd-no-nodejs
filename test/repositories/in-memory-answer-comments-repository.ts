@@ -28,4 +28,15 @@ export class InMemoryAnswerCommentsRepository
 
 		this.items.splice(itemIndex, 1);
 	}
+
+	async findManyByAnswerId(
+		answerId: string,
+		{ page }: PaginationParams,
+	): Promise<AnswerComment[]> {
+		const answerComments = this.items
+			.filter((answerComment) => answerComment.answerId.toString() === answerId)
+			.slice((page - 1) * 20, page * 20);
+
+		return answerComments;
+	}
 }
