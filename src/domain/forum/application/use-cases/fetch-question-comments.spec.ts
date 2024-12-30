@@ -41,7 +41,9 @@ describe("Fetch Question Comments", () => {
 			}),
 		);
 
-		const { questionComments } = await sut.execute({
+		const {
+			value: { questionComments },
+		} = await sut.execute({
 			page: 1,
 			questionId,
 		});
@@ -59,12 +61,16 @@ describe("Fetch Question Comments", () => {
 			);
 		}
 
-		const { questionComments: firstPage } = await sut.execute({
+		const {
+			value: { questionComments: firstPage },
+		} = await sut.execute({
 			questionId,
 			page: 1,
 		});
 
-		const { questionComments: secondPage } = await sut.execute({
+		const {
+			value: { questionComments: secondPage },
+		} = await sut.execute({
 			questionId,
 			page: 2,
 		});

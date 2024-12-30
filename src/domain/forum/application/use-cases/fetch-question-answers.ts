@@ -1,3 +1,4 @@
+import { right, type Either } from "@/core/either";
 import type { AnswersRepository } from "@/domain/forum/application/repositories/answers-repository";
 import type { QuestionsRepository } from "@/domain/forum/application/repositories/questions-repository";
 import type { Answer } from "@/domain/forum/enterprise/entities/answer";
@@ -8,9 +9,12 @@ interface FetchQuestionAnswersUseCaseRequest {
 	page: number;
 }
 
-interface FetchQuestionAnswersUseCaseResponse {
-	answers: Answer[];
-}
+type FetchQuestionAnswersUseCaseResponse = Either<
+	never,
+	{
+		answers: Answer[];
+	}
+>;
 
 export class FetchQuestionAnswersUseCase {
 	constructor(private answersRepository: AnswersRepository) {}
@@ -26,8 +30,8 @@ export class FetchQuestionAnswersUseCase {
 			},
 		);
 
-		return {
+		return right({
 			answers,
-		};
+		});
 	}
 }

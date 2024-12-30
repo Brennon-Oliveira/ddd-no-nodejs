@@ -4,6 +4,7 @@ import { makeAnswer } from "@test/factories/make-answer";
 import { InMemoryAnswersRepository } from "@test/repositories/in-memory-answers-repository";
 import { CommentOnAnswerUseCase } from "@/domain/forum/application/use-cases/comment-on-answer";
 import { InMemoryAnswerCommentsRepository } from "@test/repositories/in-memory-answer-comments-repository";
+import { ResourceNotFoundError } from "@/domain/forum/application/use-cases/errors/resource-not-found-error";
 
 let inMemoryAnswerCommentsRepository: InMemoryAnswerCommentsRepository;
 let inMemoryAnswersRepository: InMemoryAnswersRepository;
@@ -43,12 +44,13 @@ describe("Comment On Answer", () => {
 
 		await inMemoryAnswersRepository.create(answer);
 
-		await expect(() =>
-			sut.execute({
-				content: "Comentário teste",
-				authorId: "author-2",
-				answerId: "answer-2",
-			}),
-		).rejects.toBeInstanceOf(Error);
+		const result = await sut.execute({
+			content: "Comentário teste",
+			authorId: "author-2",
+			answerId: "answer-2",
+		});
+
+		expect(result.isLeft()).toBe(true);
+		expect(result.value).toBeInstanceOf(ResourceNotFoundError);
 	});
 });

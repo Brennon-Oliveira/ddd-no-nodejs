@@ -1,4 +1,4 @@
-export class Left<L> {
+export class Left<L, R> {
 	readonly value: L;
 	readonly _type = "Left" as const;
 
@@ -6,16 +6,16 @@ export class Left<L> {
 		this.value = value;
 	}
 
-	isRight(): this is Left<L> {
+	isRight(): this is Right<L, R> {
 		return false;
 	}
 
-	isLeft(): this is Left<L> {
+	isLeft(): this is Left<L, R> {
 		return true;
 	}
 }
 
-export class Right<R> {
+export class Right<L, R> {
 	readonly value: R;
 
 	readonly _type = "Right" as const;
@@ -24,21 +24,21 @@ export class Right<R> {
 		this.value = value;
 	}
 
-	isRight(): this is Right<R> {
+	isRight(): this is Right<L, R> {
 		return true;
 	}
 
-	isLeft(): this is Right<R> {
+	isLeft(): this is Right<L, R> {
 		return false;
 	}
 }
 
-export type Either<L, R> = Left<L> | Right<R>;
+export type Either<L, R> = Left<L, R> | Right<L, R>;
 
-export const left = <L>(value: L): Left<L> => {
-	return new Left<L>(value);
+export const left = <L, R>(value: L): Either<L, R> => {
+	return new Left(value);
 };
 
-export const right = <R>(value: R): Right<R> => {
-	return new Right<R>(value);
+export const right = <L, R>(value: R): Either<L, R> => {
+	return new Right(value);
 };

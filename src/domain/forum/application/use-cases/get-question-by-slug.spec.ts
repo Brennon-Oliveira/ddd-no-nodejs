@@ -24,12 +24,18 @@ describe("Get Question By Slug", () => {
 
 		await inMemoryQuestionsRepository.create(newQuestion);
 
-		const { question } = await sut.execute({
+		const result = await sut.execute({
 			slug: "example-question",
 		});
 
-		expect(question.id).toEqual(newQuestion.id);
-		expect(question.title).toEqual(newQuestion.title);
-		expect(question.content).toEqual(newQuestion.content);
+		expect(result.isRight() ? result.value.question.id : "").toEqual(
+			newQuestion.id,
+		);
+		expect(result.isRight() ? result.value.question.title : "").toEqual(
+			newQuestion.title,
+		);
+		expect(result.isRight() ? result.value.question.content : "").toEqual(
+			newQuestion.content,
+		);
 	});
 });

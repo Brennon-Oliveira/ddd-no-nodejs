@@ -13,13 +13,15 @@ describe("Answer Question", () => {
 	});
 
 	test("it should to answer a question", async () => {
-		const { answer } = await sut.execute({
+		const result = await sut.execute({
 			content: "Minha resposta",
 			instructorId: "1",
 			questionId: "1",
 		});
 
-		expect(answer.content).toEqual("Minha resposta");
-		expect(inMemoryAnswersRepository.items[0].id).toEqual(answer.id);
+		expect(result.isRight()).toBe(true);
+		expect(inMemoryAnswersRepository.items[0].id).toEqual(
+			result.value?.answer.id,
+		);
 	});
 });

@@ -5,6 +5,7 @@ import { Slug } from "@/domain/forum/enterprise/entities/value-objects/slug";
 import { EditQuestionUseCase } from "@/domain/forum/application/use-cases/edit-question";
 import { UniqueEntityID } from "@/core/entities/value-objects/unique-entity-id";
 import { makeQuestion } from "@test/factories/make-question";
+import { NotAllowedError } from "@/domain/forum/application/use-cases/errors/not-allowed-error";
 
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository;
 let sut: EditQuestionUseCase;
@@ -48,14 +49,15 @@ describe("Edit Question", () => {
 
 		await inMemoryQuestionsRepository.create(newQuestion);
 
-		await expect(() =>
-			sut.execute({
-				questionId: "question-1",
-				authorId: "author-2",
-				title: "Pergunta teste",
-				content: "Conteúdo teste",
-			}),
-		).rejects.toBeInstanceOf(Error);
+		const result = await sut.execute({
+			questionId: "question-1",
+			authorId: "author-2",
+			title: "Pergunta teste",
+			content: "Conteúdo teste",
+		});
+
+		expect(result.isLeft()).toBe(true);
+		expect(result.value).toBeInstanceOf(NotAllowedError);
 		expect(inMemoryQuestionsRepository.items).toHaveLength(1);
 	});
 });

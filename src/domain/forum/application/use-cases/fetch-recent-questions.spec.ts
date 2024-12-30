@@ -35,7 +35,9 @@ describe("Fetch Recent Questions", () => {
 			}),
 		);
 
-		const { questions } = await sut.execute({
+		const {
+			value: { questions },
+		} = await sut.execute({
 			page: 1,
 		});
 
@@ -58,11 +60,15 @@ describe("Fetch Recent Questions", () => {
 			await inMemoryQuestionsRepository.create(makeQuestion());
 		}
 
-		const { questions: firstPage } = await sut.execute({
+		const {
+			value: { questions: firstPage },
+		} = await sut.execute({
 			page: 1,
 		});
 
-		const { questions: secondPage } = await sut.execute({
+		const {
+			value: { questions: secondPage },
+		} = await sut.execute({
 			page: 2,
 		});
 

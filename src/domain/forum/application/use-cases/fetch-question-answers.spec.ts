@@ -40,7 +40,9 @@ describe("Fetch Question Answers", () => {
 			}),
 		);
 
-		const { answers } = await sut.execute({
+		const {
+			value: { answers },
+		} = await sut.execute({
 			page: 1,
 			questionId,
 		});
@@ -58,12 +60,16 @@ describe("Fetch Question Answers", () => {
 			);
 		}
 
-		const { answers: firstPage } = await sut.execute({
+		const {
+			value: { answers: firstPage },
+		} = await sut.execute({
 			questionId,
 			page: 1,
 		});
 
-		const { answers: secondPage } = await sut.execute({
+		const {
+			value: { answers: secondPage },
+		} = await sut.execute({
 			questionId,
 			page: 2,
 		});

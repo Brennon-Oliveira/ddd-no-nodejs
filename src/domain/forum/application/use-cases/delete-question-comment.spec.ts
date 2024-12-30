@@ -8,6 +8,8 @@ import { InMemoryQuestionCommentsRepository } from "@test/repositories/in-memory
 import { DeleteQuestionUseCase } from "@/domain/forum/application/use-cases/delete-question";
 import { DeleteQuestionCommentUseCase } from "@/domain/forum/application/use-cases/delete-question-comment";
 import { makeQuestionComment } from "@test/factories/make-question-comment";
+import { ResourceNotFoundError } from "@/domain/forum/application/use-cases/errors/resource-not-found-error";
+import { NotAllowedError } from "@/domain/forum/application/use-cases/errors/not-allowed-error";
 
 let inMemoryQuestionCommentsRepository: InMemoryQuestionCommentsRepository;
 let sut: DeleteQuestionCommentUseCase;
@@ -45,12 +47,13 @@ describe("Delete question comment", () => {
 
 		await inMemoryQuestionCommentsRepository.create(questionComment);
 
-		await expect(() =>
-			sut.execute({
-				authorId: "author-1",
-				questionCommentId: "question-comment-2",
-			}),
-		).rejects.toBeInstanceOf(Error);
+		const result = await sut.execute({
+			authorId: "author-1",
+			questionCommentId: "question-comment-2",
+		});
+
+		expect(result.isLeft()).toBe(true);
+		expect(result.value).toBeInstanceOf(ResourceNotFoundError);
 	});
 
 	it("should not be able to delete another user question comment", async () => {
@@ -60,11 +63,12 @@ describe("Delete question comment", () => {
 
 		await inMemoryQuestionCommentsRepository.create(questionComment);
 
-		await expect(() =>
-			sut.execute({
-				authorId: "author-2",
-				questionCommentId: questionComment.id.toString(),
-			}),
-		).rejects.toBeInstanceOf(Error);
+		const result = await sut.execute({
+			authorId: "author-2",
+			questionCommentId: questionComment.id.toString(),
+		});
+
+		expect(result.isLeft()).toBe(true);
+		expect(result.value).toBeInstanceOf(NotAllowedError);
 	});
 });
