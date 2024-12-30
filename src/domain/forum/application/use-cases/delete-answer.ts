@@ -1,3 +1,4 @@
+import { type Either, left, right } from "@/core/either";
 import type { UniqueEntityID } from "@/core/entities/value-objects/unique-entity-id";
 import type { AnswersRepository } from "@/domain/forum/application/repositories/answers-repository";
 import { Answer } from "@/domain/forum/enterprise/entities/answer";
@@ -7,7 +8,7 @@ interface DeleteAnswerUseCaseRequest {
 	authorId: string;
 }
 
-type DeleteAnswerUseCaseResponse = {};
+type DeleteAnswerUseCaseResponse = Either<string, {}>;
 
 export class DeleteAnswerUseCase {
 	constructor(private answersRepository: AnswersRepository) {}
@@ -19,15 +20,15 @@ export class DeleteAnswerUseCase {
 		const answer = await this.answersRepository.findById(answerId);
 
 		if (!answer) {
-			throw new Error("Answer not found.");
+			return left("Answer not found.");
 		}
 
 		if (answer.authorId.toValue() !== authorId) {
-			throw new Error("Not Allowed.");
+			return left("Not Allowed.");
 		}
 
 		await this.answersRepository.delete(answer);
 
-		return {};
+		return right({});
 	}
 }
