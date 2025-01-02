@@ -1,9 +1,10 @@
 import { AggregateRoot } from "@/core/entities/agreggate-root";
-import type { UniqueEntityID } from "@/core/entities/value-objects/unique-entity-id";
+import { UniqueEntityID } from "@/core/entities/value-objects/unique-entity-id";
 import type { Optional } from "@/core/types/optional";
 import type { QuestionAttachment } from "@/domain/forum/enterprise/entities/question-attachment";
 import { QuestionAttachmentsList } from "@/domain/forum/enterprise/entities/question-attachments-list";
 import { Slug } from "@/domain/forum/enterprise/entities/value-objects/slug";
+import { QuestionBestAnswerChosenEvent } from "@/domain/forum/enterprise/events/question-best-answer-chosen-event";
 import dayjs from "dayjs";
 
 export interface QuestionProps {
@@ -86,8 +87,18 @@ export class Question extends AggregateRoot<QuestionProps> {
 	}
 
 	set bestAnswerId(bestAnswerId: UniqueEntityID | undefined) {
+		const isNewBestAnswer =
+			bestAnswerId &&
+			!bestAnswerId.equals(this.props.bestAnswerId ?? UniqueEntityID.empty);
+
 		this.props.bestAnswerId = bestAnswerId;
 		this.touch();
+		if (isNewBestAnswer) {
+			console.log("ola");
+			this.addDomainEvent(
+				new QuestionBestAnswerChosenEvent(this, bestAnswerId),
+			);
+		}
 	}
 
 	set attachments(attachments: QuestionAttachmentsList) {

@@ -15,6 +15,10 @@ export class UniqueEntityID {
 		return id.toValue() === this.value;
 	}
 
+	static get empty() {
+		return new UniqueEntityID("");
+	}
+
 	constructor(value?: string) {
 		this.value = value ?? randomUUID();
 	}
