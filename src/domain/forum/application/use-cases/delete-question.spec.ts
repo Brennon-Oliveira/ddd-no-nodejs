@@ -3,19 +3,19 @@ import { InMemoryQuestionsRepository } from "../../../../../test/repositories/in
 import { DeleteQuestionUseCase } from "@/domain/forum/application/use-cases/delete-question";
 import { UniqueEntityID } from "@/core/entities/value-objects/unique-entity-id";
 import { makeQuestion } from "@test/factories/make-question";
-import { ResourceNotFoundError } from "@/domain/forum/application/use-cases/errors/resource-not-found-error";
-import { NotAllowedError } from "@/domain/forum/application/use-cases/errors/not-allowed-error";
-import { InMemoryQuestionAttachmentRepository } from "@test/repositories/in-memory-question-attachments-repository";
+import { ResourceNotFoundError } from "@/core/errors/resource-not-found-error";
+import { NotAllowedError } from "@/core/errors/not-allowed-error";
+import { InMemoryQuestionAttachmentsRepository } from "@test/repositories/in-memory-question-attachments-repository";
 import { makeQuestionAttachment } from "@test/factories/make-question-attachment";
 
-let inMemoryQuestionAttachmentRepository: InMemoryQuestionAttachmentRepository;
+let inMemoryQuestionAttachmentRepository: InMemoryQuestionAttachmentsRepository;
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository;
 let sut: DeleteQuestionUseCase;
 
 describe("Delete Question", () => {
 	beforeEach(() => {
 		inMemoryQuestionAttachmentRepository =
-			new InMemoryQuestionAttachmentRepository();
+			new InMemoryQuestionAttachmentsRepository();
 		inMemoryQuestionsRepository = new InMemoryQuestionsRepository(
 			inMemoryQuestionAttachmentRepository,
 		);

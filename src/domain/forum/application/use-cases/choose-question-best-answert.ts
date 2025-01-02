@@ -2,8 +2,8 @@ import { left, right, type Either } from "@/core/either";
 import { UniqueEntityID } from "@/core/entities/value-objects/unique-entity-id";
 import type { AnswersRepository } from "@/domain/forum/application/repositories/answers-repository";
 import type { QuestionsRepository } from "@/domain/forum/application/repositories/questions-repository";
-import { NotAllowedError } from "@/domain/forum/application/use-cases/errors/not-allowed-error";
-import { ResourceNotFoundError } from "@/domain/forum/application/use-cases/errors/resource-not-found-error";
+import { NotAllowedError } from "@/core/errors/not-allowed-error";
+import { ResourceNotFoundError } from "@/core/errors/resource-not-found-error";
 import { Answer } from "@/domain/forum/enterprise/entities/answer";
 import type { Question } from "@/domain/forum/enterprise/entities/question";
 

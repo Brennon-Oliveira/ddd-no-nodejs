@@ -2,16 +2,16 @@ import { beforeEach, describe, expect, test } from "vitest";
 import { CreateQuestionUseCase } from "@/domain/forum/application/use-cases/create-question";
 import { InMemoryQuestionsRepository } from "../../../../../test/repositories/in-memory-questions-repository";
 import { UniqueEntityID } from "@/core/entities/value-objects/unique-entity-id";
-import { InMemoryQuestionAttachmentRepository } from "@test/repositories/in-memory-question-attachments-repository";
+import { InMemoryQuestionAttachmentsRepository } from "@test/repositories/in-memory-question-attachments-repository";
 
-let inMemoryQuestionAttachmentRepository: InMemoryQuestionAttachmentRepository;
+let inMemoryQuestionAttachmentRepository: InMemoryQuestionAttachmentsRepository;
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository;
 let sut: CreateQuestionUseCase;
 
 describe("Create Question", () => {
 	beforeEach(() => {
 		inMemoryQuestionAttachmentRepository =
-			new InMemoryQuestionAttachmentRepository();
+			new InMemoryQuestionAttachmentsRepository();
 		inMemoryQuestionsRepository = new InMemoryQuestionsRepository(
 			inMemoryQuestionAttachmentRepository,
 		);

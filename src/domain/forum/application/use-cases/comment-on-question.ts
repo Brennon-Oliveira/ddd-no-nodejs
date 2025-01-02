@@ -3,7 +3,7 @@ import { UniqueEntityID } from "@/core/entities/value-objects/unique-entity-id";
 import type { AnswersRepository } from "@/domain/forum/application/repositories/answers-repository";
 import type { QuestionCommentsRepository } from "@/domain/forum/application/repositories/question-comments-repository";
 import type { QuestionsRepository } from "@/domain/forum/application/repositories/questions-repository";
-import { ResourceNotFoundError } from "@/domain/forum/application/use-cases/errors/resource-not-found-error";
+import { ResourceNotFoundError } from "@/core/errors/resource-not-found-error";
 import { QuestionComment } from "@/domain/forum/enterprise/entities/question-comment";
 
 interface CommentOnQuestionUseCaseRequest {

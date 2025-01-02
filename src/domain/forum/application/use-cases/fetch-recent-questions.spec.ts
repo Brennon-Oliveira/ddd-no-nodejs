@@ -2,16 +2,16 @@ import { beforeEach, describe, expect, it, test } from "vitest";
 import { InMemoryQuestionsRepository } from "../../../../../test/repositories/in-memory-questions-repository";
 import { makeQuestion } from "../../../../../test/factories/make-question";
 import { FetchRecentQuestions } from "@/domain/forum/application/use-cases/fetch-recent-questions";
-import { InMemoryQuestionAttachmentRepository } from "@test/repositories/in-memory-question-attachments-repository";
+import { InMemoryQuestionAttachmentsRepository } from "@test/repositories/in-memory-question-attachments-repository";
 
-let inMemoryQuestionAttachmentRepository: InMemoryQuestionAttachmentRepository;
+let inMemoryQuestionAttachmentRepository: InMemoryQuestionAttachmentsRepository;
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository;
 let sut: FetchRecentQuestions;
 
 describe("Fetch Recent Questions", () => {
 	beforeEach(() => {
 		inMemoryQuestionAttachmentRepository =
-			new InMemoryQuestionAttachmentRepository();
+			new InMemoryQuestionAttachmentsRepository();
 		inMemoryQuestionsRepository = new InMemoryQuestionsRepository(
 			inMemoryQuestionAttachmentRepository,
 		);

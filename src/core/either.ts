@@ -17,7 +17,6 @@ export class Left<L, R> {
 
 export class Right<L, R> {
 	readonly value: R;
-
 	readonly _type = "Right" as const;
 
 	constructor(value: R) {

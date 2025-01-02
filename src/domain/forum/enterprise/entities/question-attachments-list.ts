@@ -3,6 +3,6 @@ import type { QuestionAttachment } from "@/domain/forum/enterprise/entities/ques
 
 export class QuestionAttachmentsList extends WatchedList<QuestionAttachment> {
 	compareItems(a: QuestionAttachment, b: QuestionAttachment): boolean {
-		return a.attachmentId === b.attachmentId;
+		return a.attachmentId.equals(b.attachmentId);
 	}
 }

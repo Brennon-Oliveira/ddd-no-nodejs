@@ -5,7 +5,7 @@ import { InMemoryQuestionsRepository } from "@test/repositories/in-memory-questi
 import { makeQuestion } from "@test/factories/make-question";
 import { CommentOnQuestionUseCase } from "@/domain/forum/application/use-cases/comment-on-question";
 import { InMemoryQuestionCommentsRepository } from "@test/repositories/in-memory-question-comments-repository";
-import { ResourceNotFoundError } from "@/domain/forum/application/use-cases/errors/resource-not-found-error";
+import { ResourceNotFoundError } from "@/core/errors/resource-not-found-error";
 
 let inMemoryQuestionCommentsRepository: InMemoryQuestionCommentsRepository;
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository;

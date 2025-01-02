@@ -4,16 +4,16 @@ import { GetQuestionBySlug } from "@/domain/forum/application/use-cases/get-ques
 import { Question } from "@/domain/forum/enterprise/entities/question";
 import { Slug } from "@/domain/forum/enterprise/entities/value-objects/slug";
 import { makeQuestion } from "../../../../../test/factories/make-question";
-import { InMemoryQuestionAttachmentRepository } from "@test/repositories/in-memory-question-attachments-repository";
+import { InMemoryQuestionAttachmentsRepository } from "@test/repositories/in-memory-question-attachments-repository";
 
-let inMemoryQuestionAttachmentRepository: InMemoryQuestionAttachmentRepository;
+let inMemoryQuestionAttachmentRepository: InMemoryQuestionAttachmentsRepository;
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository;
 let sut: GetQuestionBySlug;
 
 describe("Get Question By Slug", () => {
 	beforeEach(() => {
 		inMemoryQuestionAttachmentRepository =
-			new InMemoryQuestionAttachmentRepository();
+			new InMemoryQuestionAttachmentsRepository();
 		inMemoryQuestionsRepository = new InMemoryQuestionsRepository(
 			inMemoryQuestionAttachmentRepository,
 		);

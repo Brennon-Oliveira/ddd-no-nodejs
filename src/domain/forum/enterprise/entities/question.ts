@@ -1,4 +1,4 @@
-import { AgreggateRoot } from "@/core/entities/agreggate-root";
+import { AggregateRoot } from "@/core/entities/agreggate-root";
 import type { UniqueEntityID } from "@/core/entities/value-objects/unique-entity-id";
 import type { Optional } from "@/core/types/optional";
 import type { QuestionAttachment } from "@/domain/forum/enterprise/entities/question-attachment";
@@ -17,7 +17,7 @@ export interface QuestionProps {
 	attachments: QuestionAttachmentsList;
 }
 
-export class Question extends AgreggateRoot<QuestionProps> {
+export class Question extends AggregateRoot<QuestionProps> {
 	static create(
 		props: Optional<QuestionProps, "createdAt" | "slug" | "attachments">,
 		id?: UniqueEntityID,

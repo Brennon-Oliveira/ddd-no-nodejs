@@ -3,8 +3,8 @@ import { UniqueEntityID } from "@/core/entities/value-objects/unique-entity-id";
 import { DeleteAnswerCommentUseCase } from "@/domain/forum/application/use-cases/delete-answer-comment";
 import { InMemoryAnswerCommentsRepository } from "@test/repositories/in-memory-answer-comments-repository";
 import { makeAnswerComment } from "@test/factories/make-answer-comment";
-import { ResourceNotFoundError } from "@/domain/forum/application/use-cases/errors/resource-not-found-error";
-import { NotAllowedError } from "@/domain/forum/application/use-cases/errors/not-allowed-error";
+import { ResourceNotFoundError } from "@/core/errors/resource-not-found-error";
+import { NotAllowedError } from "@/core/errors/not-allowed-error";
 
 let inMemoryAnswerCommentsRepository: InMemoryAnswerCommentsRepository;
 let sut: DeleteAnswerCommentUseCase;

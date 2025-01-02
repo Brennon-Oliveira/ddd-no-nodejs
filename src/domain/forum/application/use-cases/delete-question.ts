@@ -3,8 +3,8 @@ import type { UniqueEntityID } from "@/core/entities/value-objects/unique-entity
 import type { AnswersRepository } from "@/domain/forum/application/repositories/answers-repository";
 import type { QuestionAttachmentsRepository } from "@/domain/forum/application/repositories/question-attachments-repository";
 import type { QuestionsRepository } from "@/domain/forum/application/repositories/questions-repository";
-import { NotAllowedError } from "@/domain/forum/application/use-cases/errors/not-allowed-error";
-import { ResourceNotFoundError } from "@/domain/forum/application/use-cases/errors/resource-not-found-error";
+import { NotAllowedError } from "@/core/errors/not-allowed-error";
+import { ResourceNotFoundError } from "@/core/errors/resource-not-found-error";
 import { Question } from "@/domain/forum/enterprise/entities/question";
 
 interface DeleteQuestionUseCaseRequest {

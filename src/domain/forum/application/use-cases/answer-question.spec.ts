@@ -3,16 +3,16 @@ import type { AnswersRepository } from "@/domain/forum/application/repositories/
 import { AnswerQuestionUseCase } from "@/domain/forum/application/use-cases/answer-question";
 import { InMemoryAnswersRepository } from "../../../../../test/repositories/in-memory-answers-repository";
 import { UniqueEntityID } from "@/core/entities/value-objects/unique-entity-id";
-import { InMemoryAnswerAttachmentRepository } from "@test/repositories/in-memory-answer-attachments-repository";
+import { InMemoryAnswerAttachmentsRepository } from "@test/repositories/in-memory-answer-attachments-repository";
 
-let inMemoryAnswerAttachmentRepository: InMemoryAnswerAttachmentRepository;
+let inMemoryAnswerAttachmentRepository: InMemoryAnswerAttachmentsRepository;
 let inMemoryAnswersRepository: InMemoryAnswersRepository;
 let sut: AnswerQuestionUseCase;
 
 describe("Answer Question", () => {
 	beforeEach(() => {
 		inMemoryAnswerAttachmentRepository =
-			new InMemoryAnswerAttachmentRepository();
+			new InMemoryAnswerAttachmentsRepository();
 		inMemoryAnswersRepository = new InMemoryAnswersRepository(
 			inMemoryAnswerAttachmentRepository,
 		);
