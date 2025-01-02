@@ -4,7 +4,6 @@ import type { AnswersRepository } from "@/domain/forum/application/repositories/
 import type { QuestionCommentsRepository } from "@/domain/forum/application/repositories/question-comments-repository";
 import type { QuestionsRepository } from "@/domain/forum/application/repositories/questions-repository";
 import { ResourceNotFoundError } from "@/domain/forum/application/use-cases/errors/resource-not-found-error";
-import { Question } from "@/domain/forum/enterprise/entities/question";
 import { QuestionComment } from "@/domain/forum/enterprise/entities/question-comment";
 
 interface CommentOnQuestionUseCaseRequest {
