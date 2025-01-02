@@ -30,9 +30,13 @@ let inMemoryNotificationsRepository: InMemoryNotificationsRepository;
 let sendNotificationUseCase: SendNotificationUseCase;
 
 let sendNotificationExecuteSpy: MockInstance<
-	(
-		params: SendNotificationUseCaseRequest,
-	) => Promise<Either<never, SendNotificationUseCaseResponse>>
+	({
+		title,
+		content,
+		recipientId,
+	}: SendNotificationUseCaseRequest) => Promise<
+		Either<never, SendNotificationUseCaseResponse>
+	>
 >;
 
 describe("On Answer Created", () => {
@@ -65,6 +69,10 @@ describe("On Answer Created", () => {
 		await inMemoryQuestionsRepository.create(question);
 		await inMemoryAnswersRepository.create(answer);
 
-		await waitFor(() => expect(sendNotificationExecuteSpy).toHaveBeenCalled());
+		expect(sendNotificationExecuteSpy).toBeCalledWith(
+			expect.objectContaining({
+				recipientId: question.authorId.toString(),
+			}),
+		);
 	});
 });
