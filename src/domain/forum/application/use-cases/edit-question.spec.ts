@@ -1,7 +1,5 @@
 import { beforeEach, describe, expect, it, test } from "vitest";
 import { InMemoryQuestionsRepository } from "../../../../../test/repositories/in-memory-questions-repository";
-import { GetQuestionBySlug } from "@/domain/forum/application/use-cases/get-question-by-slug";
-import { Slug } from "@/domain/forum/enterprise/entities/value-objects/slug";
 import { EditQuestionUseCase } from "@/domain/forum/application/use-cases/edit-question";
 import { UniqueEntityID } from "@/core/entities/value-objects/unique-entity-id";
 import { makeQuestion } from "@test/factories/make-question";

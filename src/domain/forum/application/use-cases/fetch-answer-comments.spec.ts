@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, test } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
 import { UniqueEntityID } from "@/core/entities/value-objects/unique-entity-id";
 import { FetchAnswerCommentUseCase } from "@/domain/forum/application/use-cases/fetch-answer-comments";
 import { InMemoryAnswerCommentsRepository } from "@test/repositories/in-memory-answer-comments-repository";

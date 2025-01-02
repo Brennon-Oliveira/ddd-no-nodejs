@@ -92,5 +92,6 @@ export class Question extends AgreggateRoot<QuestionProps> {
 
 	set attachments(attachments: QuestionAttachmentsList) {
 		this.props.attachments = attachments;
+		this.touch();
 	}
 }

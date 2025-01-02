@@ -1,11 +1,6 @@
 import { beforeEach, describe, expect, it, test } from "vitest";
 import { UniqueEntityID } from "@/core/entities/value-objects/unique-entity-id";
-import { makeAnswer } from "@test/factories/make-answer";
-import { InMemoryQuestionsRepository } from "@test/repositories/in-memory-questions-repository";
-import { makeQuestion } from "@test/factories/make-question";
-import { CommentOnQuestionUseCase } from "@/domain/forum/application/use-cases/comment-on-question";
 import { InMemoryQuestionCommentsRepository } from "@test/repositories/in-memory-question-comments-repository";
-import { DeleteQuestionUseCase } from "@/domain/forum/application/use-cases/delete-question";
 import { DeleteQuestionCommentUseCase } from "@/domain/forum/application/use-cases/delete-question-comment";
 import { makeQuestionComment } from "@test/factories/make-question-comment";
 import { ResourceNotFoundError } from "@/domain/forum/application/use-cases/errors/resource-not-found-error";

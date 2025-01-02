@@ -1,19 +1,22 @@
 import { beforeEach, describe, expect, test } from "vitest";
-import type { QuestionsRepository } from "@/domain/forum/application/repositories/questions-repository";
-import { CreateQuestionUseCase } from "@/domain/forum/application/use-cases/create-question";
 import { InMemoryQuestionsRepository } from "../../../../../test/repositories/in-memory-questions-repository";
 import { GetQuestionBySlug } from "@/domain/forum/application/use-cases/get-question-by-slug";
 import { Question } from "@/domain/forum/enterprise/entities/question";
 import { Slug } from "@/domain/forum/enterprise/entities/value-objects/slug";
-import { UniqueEntityID } from "@/core/entities/value-objects/unique-entity-id";
 import { makeQuestion } from "../../../../../test/factories/make-question";
+import { InMemoryQuestionAttachmentRepository } from "@test/repositories/in-memory-question-attachments-repository";
 
+let inMemoryQuestionAttachmentRepository: InMemoryQuestionAttachmentRepository;
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository;
 let sut: GetQuestionBySlug;
 
 describe("Get Question By Slug", () => {
 	beforeEach(() => {
-		inMemoryQuestionsRepository = new InMemoryQuestionsRepository();
+		inMemoryQuestionAttachmentRepository =
+			new InMemoryQuestionAttachmentRepository();
+		inMemoryQuestionsRepository = new InMemoryQuestionsRepository(
+			inMemoryQuestionAttachmentRepository,
+		);
 		sut = new GetQuestionBySlug(inMemoryQuestionsRepository);
 	});
 
